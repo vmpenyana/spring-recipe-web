@@ -1,9 +1,13 @@
 package com.tenxrs.springrecipeweb.domain;
 
 import jakarta.persistence.*;
+import java.util.Set;
 
 @Entity
 public class Recipe {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String description;
     private Integer prepTime;
     private Integer cookTime;
@@ -11,16 +15,15 @@ public class Recipe {
     private String source;
     private String url;
     private String directions;
-    // TODO: 2023/08/28  
+    // TODO: 2023/08/28
 //    private Difficulty difficulty;
     @Lob
     private Byte[] image;
 
     @OneToOne(cascade = CascadeType.ALL)
     private Note note;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "recipe")
+    private Set<Ingredient> ingredients;
 
     public String getDescription() {
         return description;
