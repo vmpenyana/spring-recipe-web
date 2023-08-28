@@ -21,6 +21,12 @@ public class Recipe {
     private Difficulty difficulty;
     @Lob
     private Byte[] image;
+    /**
+     * No cascading required here since a category
+     * won't be belonging to a specific recipe.
+     */
+    @ManyToMany(mappedBy = "recipes")
+    private Set<Category> categories;
 
     @OneToOne(cascade = CascadeType.ALL)
     private Note note;
