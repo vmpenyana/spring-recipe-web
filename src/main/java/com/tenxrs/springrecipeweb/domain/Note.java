@@ -1,8 +1,11 @@
 package com.tenxrs.springrecipeweb.domain;
 
 import jakarta.persistence.*;
+import lombok.*;
 
+@Data
 @Entity
+@EqualsAndHashCode(exclude = {"recipe"})
 public class Note {
 
     @OneToOne
@@ -14,28 +17,5 @@ public class Note {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
 
-
-    public Long getId() {
-        return id;
-    }
-
-    public Recipe getRecipe() {
-        return recipe;
-    }
-
-    public void setRecipe(Recipe recipe) {
-        this.recipe = recipe;
-    }
-
-    public String getRecipeNotes() {
-        return recipeNotes;
-    }
-
-    public void setRecipeNotes(String recipeNotes) {
-        this.recipeNotes = recipeNotes;
-    }
 }
